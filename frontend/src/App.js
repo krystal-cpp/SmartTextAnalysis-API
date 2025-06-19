@@ -15,7 +15,7 @@ function App()
 
     try
     {
-        const response = await axios.post('http://localhost:5000/api/rephrase', {text});
+        const response = await axios.post('https://smarttextanalysis-api.onrender.com/api/rephrase', {text});
         setResult(response.data);
     }
     catch(error)
