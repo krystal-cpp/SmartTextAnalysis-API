@@ -1,39 +1,76 @@
 # SmartTextAnalysis-API
 
-A simple Node.js REST API that analyzes text input to determine sentiment and extract key topics using natural language processing (NLP). The project includes a minimal React frontend to interact with the API.
+A Node.js REST API that uses AI to rewrite (rephrase/paraphrase) text input into natural, human-like language.  
+It leverages the **LLaMA 3 70B Instruct** model hosted by **Groq** via [OpenRouter](https://openrouter.ai/) — one of the fastest available large language model (LLM) APIs.
 
-## Features
+## ✨ Features
 
-- Analyze text sentiment (positive, negative, neutral)
-- Extract key topics from text
-- Store analysis history in MongoDB
-- Simple React frontend for submitting text and viewing results and history
-- Written in JavaScript with Express and node-nlp library
+- 🔁 Rephrase any text into fluent, human-like English
+- 🧠 Powered by `meta-llama/llama-3-70b-instruct` via OpenRouter API
+- 💨 Fast inference using Groq’s ultra-low latency backend
+- 📦 Modular structure with `rephraser` service
+- ☁️ Supports future deployment and frontend integration
+- 📜 Clean API response with original and rewritten text
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- Backend: Node.js, Express, node-nlp, MongoDB (with Mongoose)
-- Frontend: React, Axios, JavaScript
-- No authentication for initial version
+| Part     | Tech                               |
+|----------|------------------------------------|
+| Backend  | Node.js, Express, Axios, dotenv    |
+| AI Model | LLaMA 3 (via OpenRouter & Groq)    |
+| Optional | MongoDB (for future history saving)|
+| Frontend | Planned: React or Vue (optional)   |
 
-## How to Run
+## 🔌 API Endpoint
 
-1. Clone the repository
-2. Install backend dependencies: `npm install`
-3. Start MongoDB (local or cloud)
-4. Run backend server: `node server.js`
-5. Navigate to frontend directory, install dependencies and run frontend
+### `POST /api/rephrase`
 
-## API Endpoints
+#### Request:
+{
+  "text": "I live in a house near the mountains."
+}
+#### Response:
+{
+  "original": "I live in a house near the mountains.",
+  "rewritten": "My home is nestled in the mountains."
+}
 
-- `POST /api/analyze` — submit text for analysis
-- `GET /api/history` — get all past analysis results
+## Getting Started
 
-## Future Improvements
+### 1. Clone the repository
+`git clone https://github.com/krystal-cpp/SmartTextAnalysis-API.git`
+`cd SmartTextAnalysis-API`
 
-- Add user authentication
-- Deploy with CI/CD pipeline
-- Dockerize backend and frontend
-- Integrate advanced NLP services
+### 2. Install dependencies
+`npm install`
 
----
+### 3. Add your .env file:
+`API_KEY_OPENROUTER=sk-or-xxxxxxxxxxxxxxxxxxxxxxxx`
+
+### 4. Run the server
+`node server.js`
+The API will be available at: `http://localhost:5000/api/rephrase`
+
+## Roadmap
+- Add style options (formal, casual, etc.)
+
+- Store rephrase history in MongoDB
+
+- React-based frontend interface
+
+- Rate limiting / abuse protection
+
+- User authentication (optional)
+
+- Dockerization + CI/CD pipeline
+
+## Why This Project?
+This project demonstrates how to:
+
+- Integrate cutting-edge AI models (LLaMA 3 via OpenRouter)
+  
+- Build clean REST APIs in JavaScript
+  
+- Work with third-party LLM APIs
+  
+- Prepare for real-world backend developer roles
