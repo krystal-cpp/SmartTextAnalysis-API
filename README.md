@@ -3,6 +3,12 @@
 A Node.js REST API that uses AI to rewrite (rephrase/paraphrase) text input into natural, human-like language.  
 It leverages the **LLaMA 3 70B Instruct** model hosted by **Groq** via [OpenRouter](https://openrouter.ai/) — one of the fastest available large language model (LLM) APIs.
 
+## Live Demo
+
+Frontend: [https://endearing-queijadas-237724.netlify.app/](https://endearing-queijadas-237724.netlify.app/)
+
+Backend: [https://smarttextanalysis-api.onrender.com](https://smarttextanalysis-api.onrender.com)
+
 ## ✨ Features
 
 - 🔁 Rephrase any text into fluent, human-like English
