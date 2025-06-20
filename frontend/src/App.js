@@ -7,6 +7,7 @@ function App()
   const [text, setText] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleRephrase = async () => {
     if(!text.trim()) return;
@@ -16,12 +17,21 @@ function App()
     try
     {
         const response = await axios.post('https://smarttextanalysis-api.onrender.com/api/rephrase', {text});
-        setResult(response.data);
+        setResult(response.data.rewritten);
+        setError(null);
     }
     catch(error)
     {
-        console.error('Rephrase failed:', error);
-        setResult({error: 'Something went wrong'});
+        if(error.response)
+        {
+          setError(error.response.data.error || 'Server error');
+          console.error('Rephrase failed:', error);
+        }
+        else
+        {
+          setError('Network error. Please try again later.');
+          console.error('Rephrase failed:', error);
+        }  
     }
     setLoading(false);
   };
@@ -38,7 +48,7 @@ function App()
       <button onClick={handleRephrase} disabled={loading}>
         {loading ? 'Rephrasing...' : 'Rephrase Text'}
       </button>
-
+      {error && <div className='error'>{error}</div>}
       {result && (
         <div className='result'>
           {result.error ? (

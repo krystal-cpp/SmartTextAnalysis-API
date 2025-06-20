@@ -5,6 +5,7 @@ const { rephraseText } = require('../services/rephraser');
 router.post('/', async (req, res) => {
     const { text } = req.body;
     if(!text) return res.status(400).json({error: 'Text is required'});
+    if(text.length > 1000) return res.status(400).json({error: 'Text too long. Max 1000 characters allowed.'});
 
     try
     {
